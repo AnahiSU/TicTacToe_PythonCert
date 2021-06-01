@@ -88,5 +88,5 @@ def checkBoard(board):
 
 
 
-#Pruebas
+#Invocar pruebas
 MachineMove(board)
