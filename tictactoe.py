@@ -1,4 +1,4 @@
-import time #Para el contador (tiempo de mostrar el tablero en la consola)
+import time as t #Para el contador (tiempo de mostrar el tablero en la consola)
 import os
 import random as r
 board = [[1,2,3],[4,"X",6],[7,8,9]]
@@ -26,7 +26,7 @@ def EnterMove(board):
         board[fil][col] = "O" #Super nice, aqui el numero ya estará reemplazado por O
     except:
       print("Not valid move, you lost your turn :)") 
-      time.sleep(2) 
+      t.sleep(2) 
     def clear(): #Limpiar consola en Linux y Windows
       if os.name == "nt":
         os.system("cls")
@@ -39,7 +39,7 @@ def checklist(board):
   free = []
   for fil in range(0,3):
     for col in range (0,3):
-      if board[fil][col] not in ['O','X']:
+      if board[fil][col] not in ["O","X"]:
         free.append((fil,col))
   return free 
 
@@ -51,7 +51,7 @@ def MachineMove(board):
     fil, col = free[num]
     board[fil][col] = 'X'
     print("Computer is thinking...")
-    time.sleep(3)
+    t.sleep(3)
   def clear(): #Limpiar consola en Linux y Windows
       if os.name == "nt":
         os.system("cls")
