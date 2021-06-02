@@ -36,7 +36,6 @@ def EnterMove(board):
     clear()  
 
 def checklist(board):
-  #Lista de posiciones libres
   free = []
   for fil in range(0,3):
     for col in range (0,3):
@@ -86,6 +85,7 @@ def checkBoard(board, sgn):
 		return who
 	return None
 
+
 #Hora de la verdad :)    
 free = checklist(board)
 human = True
@@ -114,7 +114,6 @@ elif checkBoard(board, "O") == "user":
   print("\nYou win!")
 else:
   print("\nIt's a draw. You're amazing! (guiño, guiño ;)")    
-
 
 
 
