@@ -59,8 +59,6 @@ def MachineMove(board):
         os.system("clear")
   clear()  
      
-  
-# checkBoard en proceso :,)
 def checkBoard(board, sgn):
 	if sgn == "X":	#Buscar X
 		who = "computer"	#X es de la maquina
@@ -84,7 +82,6 @@ def checkBoard(board, sgn):
 	if cross1 or cross2:
 		return who
 	return None
-
 
 #Hora de la verdad :)    
 free = checklist(board)
@@ -114,9 +111,4 @@ elif checkBoard(board, "O") == "user":
   print("\nYou win!")
 else:
   print("\nIt's a draw. You're amazing! (guiño, guiño ;)")    
-
-
-
-
-
 
