@@ -13,7 +13,6 @@ def DisplayBoard(board): #Creación del tablero y el arreglo
       print(("|"+" "*7)*3+"|")  
       print((("+"+"-"*7))*3+"+") 
 
-DisplayBoard(board) 
 def EnterMove(board):
     movi =int(input("¿Dónde deseas poner la O?: "))
     for i in range(0,3): #Revisar en que fila se encuentra la variable
@@ -34,59 +33,89 @@ def EnterMove(board):
         os.system("clear")
 
     clear()  
-    DisplayBoard(board)
+
+def checklist(board):
+  free = []
+  for fil in range(0,3):
+    for col in range (0,3):
+      if board[fil][col] not in ['O','X']:
+        free.append((fil,col))
+  return free 
 
 def MachineMove(board):
-  aux = False
-  EnterMove(board)
-  numeroR = r.randint(1,9)
-  while aux == False:
-    for b in range(3):
-      if numeroR in board[b]:
-        aux = True
-        fil = b
-  if aux == True:
-    tab = board[fil]
-    col = tab.index(numeroR)
-    board[fil][col] = "X"
+  free = checklist(board)
+  count = len(free)
+  if count > 0:
+    num = r.randrange(count)
+    fil, col = free[num]
+    board[fil][col] = 'X'
+  time.sleep(3)
   def clear(): #Limpiar consola en Linux y Windows
       if os.name == "nt":
         os.system("cls")
       else:
         os.system("clear")
   clear()  
-  DisplayBoard(board)
-  EnterMove(board)
-
+     
+  
 # checkBoard en proceso :,)
-def checkBoard(board):
-  aux = False
-  while aux == False:
-    for i in range(3):
-      a = board[i][0]
-      b = board[i][1]
-      c = board[i][2]
-      if a == "X":
-        if a == b == c:
-          print("Computer Wins!")
-          aux = True
-      elif a == "O":
-        if a == b == c:
-          print("You win!")
-          aux = True  
-    for c in range(3):
-      a = board[0][c]
-      b = board[1][c]
-      c = board[2][c]
-      if a == "X":
-        print("Computer Wins!")
-        aux = True
-      elif a == "O":
-        print("You win!")
-        aux = True
-        
+def checkBoard(board, sgn):
+	if sgn == "X":	# ¿Estamos buscando X?
+		who = "computer"	# Si, es la maquina
+	elif sgn == "O": # ... o estamos buscando O?
+		who = "user"	# Si, es el usuario
+	else:
+		who = None	# ¡No debemos de caer aquí!
+	cross1 = cross2 = True  # para las diagonales
+	for rc in range(3):
+		if board[rc][0] == sgn and board[rc][1] == sgn and board[rc][2] == sgn:	# revisar filas rc
+			return who
+		if board[0][rc] == sgn and board[1][rc] == sgn and board[2][rc] == sgn: # revisar columnas rc
+			return who
+		if board[rc][rc] != sgn: # revisar la primer diagonal
+			cross1 = False
+		if board[2 - rc][2 - rc] != sgn: # revisar la segunda diagonal
+			cross2 = False
+	if cross1 or cross2:
+		return who
+	return None
 
+def DrawMove(board):
+	free = MakeListOfFreeFields(board) # hace una lista de los cuadros vacios o libres
+	cnt = len(free)
+	if cnt > 0:	# si la lista no esta vacía, elegir un lugar para 'X' y colocarla 
+		this = randrange(cnt)
+		row, col = free[this]
+		board[row][col] = 'X'
 
 
 #Invocar pruebas
-MachineMove(board)
+
+free = checklist(board)
+human = True
+while len(free):
+  DisplayBoard(board)
+  if human:
+    EnterMove(board)
+    winner = checkBoard(board, "O")
+  else:
+    MachineMove(board)
+    winner = checkBoard(board, "X")
+  if winner != None:
+    break
+  human = not human 
+  checklist(board)
+DisplayBoard(board)
+if checkBoard(board, "X") == "computer":
+  print("I win!")
+elif checkBoard(board, "O") == "user":
+  print("You win!")
+else:
+  print("It's a draw.")    
+
+
+
+
+
+
+
