@@ -15,7 +15,7 @@ def DisplayBoard(board): #Creación del tablero y el arreglo
 
 def EnterMove(board):
     try:
-      movi =int(input("¿Dónde deseas poner la O?: "))
+      movi =int(input("\nWhat is your next move?: "))
       for i in range(0,3): #Revisar en que fila se encuentra la variable
         if movi in board[i]:
           aux = True #Mouskerramienta misteriosa que servirá para más adelante
@@ -25,7 +25,7 @@ def EnterMove(board):
         col = tab.index(movi) #Viendo donde se encuentra el bendito numero 
         board[fil][col] = "O" #Super nice, aqui el numero ya estará reemplazado por O
     except:
-      print("Not valid move, you lost your turn :)") 
+      print("\nInvalid move, you lost your turn :)") 
       t.sleep(2) 
     def clear(): #Limpiar consola en Linux y Windows
       if os.name == "nt":
@@ -50,8 +50,8 @@ def MachineMove(board):
     num = r.randrange(count)
     fil, col = free[num]
     board[fil][col] = 'X'
-    print("Computer is thinking...")
-    t.sleep(3)
+    print("\nComputer is thinking...")
+    t.sleep(2)
   def clear(): #Limpiar consola en Linux y Windows
       if os.name == "nt":
         os.system("cls")
@@ -103,20 +103,26 @@ while len(free):
   if human:
     EnterMove(board)
     winner = checkBoard(board, "O")
+    checklist(board)
+    free = checklist(board)
   else:
     MachineMove(board)
     winner = checkBoard(board, "X")
-  if winner != None:
+    checklist(board)
+    free = checklist(board)
+  if winner == None and len(free) == 0:
+    break
+  elif winner != None:
     break
   human = not human 
-  checklist(board)
+
 DisplayBoard(board)
 if checkBoard(board, "X") == "computer":
-  print("I win!")
+  print("\nI win!")
 elif checkBoard(board, "O") == "user":
-  print("You win!")
+  print("\nYou win!")
 else:
-  print("It's a draw.")    
+  print("\nIt's a draw. You're amazing! (guiño, guiño ;)")    
 
 
 
