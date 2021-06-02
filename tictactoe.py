@@ -49,7 +49,8 @@ def MachineMove(board):
     num = r.randrange(count)
     fil, col = free[num]
     board[fil][col] = 'X'
-  time.sleep(3)
+    print("Computer is thinking...")
+    time.sleep(3)
   def clear(): #Limpiar consola en Linux y Windows
       if os.name == "nt":
         os.system("cls")
@@ -60,37 +61,40 @@ def MachineMove(board):
   
 # checkBoard en proceso :,)
 def checkBoard(board, sgn):
-	if sgn == "X":	# ¿Estamos buscando X?
-		who = "computer"	# Si, es la maquina
-	elif sgn == "O": # ... o estamos buscando O?
-		who = "user"	# Si, es el usuario
+	if sgn == "X":	#Buscar X
+		who = "computer"	#X es de la maquina
+	elif sgn == "O": #Buscar O
+		who = "user"	#O es del usuario
 	else:
-		who = None	# ¡No debemos de caer aquí!
-	cross1 = cross2 = True  # para las diagonales
+		who = None 
+	cross1 = cross2 = True  #para las diagonales
 	for rc in range(3):
-		if board[rc][0] == sgn and board[rc][1] == sgn and board[rc][2] == sgn:	# revisar filas rc
+    #Filas
+		if board[rc][0] == sgn and board[rc][1] == sgn and board[rc][2] == sgn:
 			return who
-		if board[0][rc] == sgn and board[1][rc] == sgn and board[2][rc] == sgn: # revisar columnas rc
+    #Columnas
+		if board[0][rc] == sgn and board[1][rc] == sgn and board[2][rc] == sgn:
 			return who
-		if board[rc][rc] != sgn: # revisar la primer diagonal
+    #Diagonales  
+		if board[rc][rc] != sgn:
 			cross1 = False
-		if board[2 - rc][2 - rc] != sgn: # revisar la segunda diagonal
+		if board[2 - rc][2 - rc] != sgn:
 			cross2 = False
 	if cross1 or cross2:
 		return who
 	return None
 
 def DrawMove(board):
-	free = MakeListOfFreeFields(board) # hace una lista de los cuadros vacios o libres
+  #Lista de lugares libres
+	free = MakeListOfFreeFields(board)
 	cnt = len(free)
-	if cnt > 0:	# si la lista no esta vacía, elegir un lugar para 'X' y colocarla 
+	if cnt > 0:	
 		this = randrange(cnt)
 		row, col = free[this]
 		board[row][col] = 'X'
 
 
-#Invocar pruebas
-
+#Hora de la verdad :)    
 free = checklist(board)
 human = True
 while len(free):
