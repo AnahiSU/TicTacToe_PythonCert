@@ -36,6 +36,7 @@ def EnterMove(board):
     clear()  
 
 def checklist(board):
+  #Lista de posiciones libres
   free = []
   for fil in range(0,3):
     for col in range (0,3):
@@ -84,16 +85,6 @@ def checkBoard(board, sgn):
 	if cross1 or cross2:
 		return who
 	return None
-
-def DrawMove(board):
-  #Lista de lugares libres
-	free = MakeListOfFreeFields(board)
-	cnt = len(free)
-	if cnt > 0:	
-		this = randrange(cnt)
-		row, col = free[this]
-		board[row][col] = 'X'
-
 
 #Hora de la verdad :)    
 free = checklist(board)
