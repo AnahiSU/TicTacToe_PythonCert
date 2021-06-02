@@ -25,7 +25,7 @@ def EnterMove(board):
         col = tab.index(movi) #Viendo donde se encuentra el bendito numero 
         board[fil][col] = "O" #Super nice, aqui el numero ya estará reemplazado por O
     except:
-      print("Not valid number, you lost your turn :)") 
+      print("Not valid move, you lost your turn :)") 
       time.sleep(2) 
     def clear(): #Limpiar consola en Linux y Windows
       if os.name == "nt":
