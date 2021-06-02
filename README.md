@@ -1,7 +1,7 @@
 # *Juego De Tres En Raya Con Python*
 -Reglas-
-- Cada espacio vacio esta señalado por un número, para poder ingresar el movimiento seleccionar un número disponible.
-- De ser el caso que el usuario no ingrese un número disponible o ni siquiera un número, pierde un turno.
+- Cada espacio vacío está señalado por un número, para poder realizar el movimiento, escribir el número de la casilla disponible.
+- De ser el caso que el usuario **no ingrese un número disponible o ni siquiera un número, pierde un turno.**
 - Y gana quien llene una fila, columna o diagonal con el simbolo "O" (usuario) o "X"(máquina).
 
 -Notas:-
