@@ -14,18 +14,19 @@ def DisplayBoard(board): #Creación del tablero y el arreglo
       print((("+"+"-"*7))*3+"+") 
 
 def EnterMove(board):
-    movi =int(input("¿Dónde deseas poner la O?: "))
-    for i in range(0,3): #Revisar en que fila se encuentra la variable
-      if movi in board[i]:
-        aux = True #Mouskerramienta misteriosa que servirá para más adelante
-        fil = i   
-    if aux == True: #Aquí mero se ve en que columna está
-      tab = board[fil] #Dandole una variable pa que me deje trabajar
-      col = tab.index(movi) #Viendo donde se encuentra el bendito numero 
-      board[fil][col] = "O" #Super nice, aqui el numero ya estará reemplazado por O
-    else:
-      print("No manches, eso no es válido") #Revisar wtf 
-
+    try:
+      movi =int(input("¿Dónde deseas poner la O?: "))
+      for i in range(0,3): #Revisar en que fila se encuentra la variable
+        if movi in board[i]:
+          aux = True #Mouskerramienta misteriosa que servirá para más adelante
+          fil = i   
+      if aux == True: #Aquí mero se ve en que columna está
+        tab = board[fil] #Dandole una variable pa que me deje trabajar
+        col = tab.index(movi) #Viendo donde se encuentra el bendito numero 
+        board[fil][col] = "O" #Super nice, aqui el numero ya estará reemplazado por O
+    except:
+      print("Not valid number, you lost your turn :)") 
+      time.sleep(2) 
     def clear(): #Limpiar consola en Linux y Windows
       if os.name == "nt":
         os.system("cls")
